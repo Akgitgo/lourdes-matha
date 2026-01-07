@@ -12,6 +12,7 @@ export interface MediaItem {
     featured?: boolean;
     duration?: string;
     date?: string;
+    consentSigned?: boolean;
 }
 
 export const galleryItems: MediaItem[] = [
