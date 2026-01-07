@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/uuid": "^10.0.0",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.23.25",
@@ -17,7 +18,8 @@
     "next-seo": "^7.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

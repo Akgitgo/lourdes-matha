@@ -4,8 +4,8 @@ import { MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function FloatingContactButtons() {
-    const phoneNumber = "919100773861"; // Number from ContactForm
-    const whatsappMessage = "Hello, I would like to know more about Grace Garden.";
+    const phoneNumber = "917907072664"; // Updated to match Lourdes Matha contact
+    const whatsappMessage = "Hello, I would like to know more about Lourdes Matha Ayurvedic Hospital.";
 
     return (
         <div className="fixed bottom-16 right-6 z-50 flex flex-col gap-4 items-end">

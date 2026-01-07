@@ -1,227 +1,143 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import { Star, Quote, Play } from 'lucide-react';
-import Image from 'next/image';
-import LightboxModal from './gallery/LightboxModal';
-import { MediaItem } from '@/lib/galleryData';
+import { testimonialsData } from '@/lib/testimonials';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 export default function Testimonials() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-    const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
-    // Auto-swipe logic
-    useEffect(() => {
-        if (isPaused) return;
-        const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev === 0 ? 1 : 0));
-        }, 8000); // 8 seconds per slide
-        return () => clearInterval(interval);
-    }, [isPaused]);
-
-    const visuals: MediaItem[] = [
-        {
-            id: 't1',
-            type: 'image',
-            src: '/images/test1.jpg',
-            alt: 'Testimonial image 1',
-            title: 'Diabetic Camp',
-            category: 'testimonials',
-            width: 1920,
-            height: 1080
-        },
-        {
-            id: 't2',
-            type: 'image',
-            src: '/images/testimonials3.jpeg',
-            alt: 'Community gathering',
-            title: 'Community Bond',
-            category: 'testimonials',
-            width: 1200,
-            height: 800
-        },
-        {
-            id: 't3',
-            type: 'image',
-            src: '/images/test2.jpg',
-            alt: 'Testimonial image 2',
-            title: 'Peaceful Living',
-            category: 'testimonials',
-            width: 1920,
-            height: 1080,
-            objectPosition: 'right center'
-        },
-    ];
-
-    const reviews = [
-        {
-            text: "It was such a pleasant and beautiful surprise. But really happy for you if this is what you had always wanted to do... wishing you all success. May this venture help you reach your goals, bring you happiness, peace and blessings.",
-            author: "Juliet",
-            role: "Daughter • Dubai"
-        },
-        {
-            text: "I am so happy to hear this wonderful news from you. Take this opportunity to wish you all the very best in your maiden and bold step. May God give you all the courage and strength to take this new venture to its pinnacle of success.",
-            author: "Shaji Vamadevan",
-            role: "CEO VST • Bangalore"
-        },
-        {
-            text: "Ellam bhangiyayi aakatte. Daivathinte anugrahamode ella karyangalum sundaramaayi nadannukondirikatte. Ente hridayathil ninnulla prarthanakalum aashamsakalum ningalodoppam endinum undayirikkatte.",
-            author: "Malliyoor Divakaran Thirumeni",
-            role: "Kottayam"
-        }
-    ];
-
-    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-        if (info.offset.x < -50) {
-            // Swipe Left -> Next
-            setCurrentIndex(1);
-        } else if (info.offset.x > 50) {
-            // Swipe Right -> Prev
-            setCurrentIndex(0);
-        }
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setItemsPerPage(1);
+      else if (window.innerWidth < 1024) setItemsPerPage(2);
+      else setItemsPerPage(3);
     };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-    return (
-        <section id="testimonials" className="py-20 px-4 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3">
-                        TESTIMONIALS
-                    </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-4">
-                        Stories of Trust & Love
-                    </h2>
-                    <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                        Hear from families who have entrusted us with their most precious relationships.
-                    </p>
-                </div>
+  const totalPages = Math.ceil(testimonialsData.items.length / itemsPerPage);
 
-                {/* Carousel Container */}
-                <div
-                    className="relative min-h-[500px]"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                    onTouchStart={() => setIsPaused(true)}
-                    onTouchEnd={() => setIsPaused(false)}
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const visibleItems = testimonialsData.items.slice(
+    currentIndex * itemsPerPage,
+    (currentIndex + 1) * itemsPerPage
+  );
+
+  return (
+    <section
+      id="testimonials"
+      className="bg-[#f9fafb] py-16 px-6 sm:px-12 md:py-24 md:px-20 w-full overflow-hidden relative"
+    >
+      <div className="max-w-7xl mx-auto relative">
+        <div className="text-center mb-12 md:mb-16">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-['Inter'] text-sm sm:text-base font-medium text-[#2d5a4f] mb-4 tracking-[2px] uppercase"
+          >
+            {testimonialsData.subheading}
+          </motion.h3>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-['Playfair_Display'] text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-6 leading-tight"
+          >
+            {testimonialsData.heading}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="font-['Inter'] text-base sm:text-lg font-normal text-gray-600 leading-relaxed max-w-3xl mx-auto"
+          >
+            {testimonialsData.description}
+          </motion.p>
+        </div>
+
+        <div className="relative px-2 sm:px-12">
+          <motion.div
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(_, info) => {
+              const threshold = 50;
+              if (info.offset.x < -threshold) {
+                nextSlide();
+              } else if (info.offset.x > threshold) {
+                prevSlide();
+              }
+            }}
+            className="grid gap-6 md:gap-8 items-stretch cursor-grab active:cursor-grabbing"
+            style={{
+              gridTemplateColumns: `repeat(${itemsPerPage}, 1fr)`,
+            }}
+          >
+            <AnimatePresence mode="wait">
+              {visibleItems.map((testimonial, index) => (
+                <motion.div
+                  key={`${currentIndex}-${index}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="bg-white p-6 sm:p-10 rounded-3xl shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-2xl transition-all duration-500 min-h-[420px] sm:min-h-[480px] pointer-events-none sm:pointer-events-auto"
                 >
-                    <AnimatePresence mode="wait">
-                        {currentIndex === 0 ? (
-                            /* Slide 1: Visuals */
-                            <motion.div
-                                key="visuals"
-                                initial={{ opacity: 0, x: 100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 0.5 }}
-                                drag="x"
-                                dragConstraints={{ left: 0, right: 0 }}
-                                onDragEnd={handleDragEnd}
-                                className="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-grab active:cursor-grabbing"
-                            >
-                                {visuals.map((item, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="relative aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden shadow-lg group cursor-pointer"
-                                        onClick={() => setSelectedMedia(item)}
-                                    >
-                                        {item.type === 'video' ? (
-                                            <>
-                                                <video
-                                                    src={item.src}
-                                                    className="w-full h-full object-cover"
-                                                    autoPlay
-                                                    muted
-                                                    loop
-                                                    playsInline
-                                                />
-                                                {/* Play Icon Overlay */}
-                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
-                                                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/50">
-                                                        <Play size={32} fill="currentColor" />
-                                                    </div>
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <Image
-                                                src={item.src}
-                                                alt={item.alt}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                style={{ objectPosition: (item as any).objectPosition || 'center' }}
-                                            />
-                                        )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                                        <div className="absolute bottom-6 left-6 pointer-events-none">
-                                            <span className="bg-white/20 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-medium border border-white/30">
-                                                {item.title}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        ) : (
-                            /* Slide 2: Reviews */
-                            <motion.div
-                                key="reviews"
-                                initial={{ opacity: 0, x: 100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 0.5 }}
-                                drag="x"
-                                dragConstraints={{ left: 0, right: 0 }}
-                                onDragEnd={handleDragEnd}
-                                className="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-grab active:cursor-grabbing"
-                            >
-                                {reviews.map((review, idx) => (
-                                    <div key={idx} className="bg-slate-50 p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col h-full">
-                                        <div className="flex gap-1 mb-6">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
-                                            ))}
-                                        </div>
-                                        <div className="flex-grow">
-                                            <Quote className="text-primary/20 mb-4 rotate-180" size={32} />
-                                            <p className="text-slate-700 leading-relaxed italic mb-6">
-                                                &quot;{review.text}&quot;
-                                            </p>
-                                        </div>
-                                        <div className="mt-auto pt-6 border-t border-slate-200">
-                                            <h4 className="font-bold text-slate-900">{review.author}</h4>
-                                            <p className="text-sm text-slate-500">{review.role}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
+                  <div className="text-[#2d5a4f]/20 mb-4 sm:mb-6">
+                    <Quote className="w-8 h-8 sm:w-12 sm:h-12" fill="currentColor" />
+                  </div>
 
-                {/* Indicators */}
-                <div className="flex justify-center gap-3 mt-12">
-                    {[0, 1].map((idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentIndex(idx)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-primary w-8' : 'bg-slate-300 hover:bg-slate-400'
-                                }`}
-                            aria-label={`Go to slide ${idx + 1}`}
-                        />
-                    ))}
-                </div>
-            </div>
+                  <blockquote className="font-['Inter'] text-xs sm:text-base text-gray-700 leading-relaxed mb-6 flex-grow italic overflow-hidden">
+                    "{testimonial.quote}"
+                  </blockquote>
 
-            {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedMedia && (
-                    <LightboxModal
-                        item={selectedMedia}
-                        onClose={() => setSelectedMedia(null)}
-                    />
-                )}
+                  <div className="mt-auto pt-4 sm:pt-6 border-t border-gray-100">
+                    <div className="font-['Inter'] text-base sm:text-lg font-bold text-[#B8860B] mb-1">
+                      {testimonial.author}
+                    </div>
+                    {testimonial.profession && (
+                      <div className="font-['Inter'] text-[10px] sm:text-sm font-semibold text-[#B8860B]/80 mb-1 uppercase tracking-wider">
+                        {testimonial.profession}
+                      </div>
+                    )}
+                    {testimonial.location && (
+                      <div className="font-['Inter'] text-[10px] sm:text-xs text-gray-500">
+                        {testimonial.location}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </AnimatePresence>
-        </section>
-    );
+          </motion.div>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-2 mt-12">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-8 bg-[#B8860B]' : 'w-2.5 bg-gray-300'}`}
+              aria-label={`Go to page ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

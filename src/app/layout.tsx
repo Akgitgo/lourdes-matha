@@ -16,12 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Grace Garden - Professional Elder Care & Assisted Living in Wayanad, Kerala",
-  description: "Grace Garden offers compassionate assisted living and home care services for seniors in Wayanad, Kerala. 24/7 medical care, nutritious meals, cultural activities, and comfortable accommodation options in a serene environment.",
-  keywords: ["elder care Wayanad", "assisted living Kerala", "senior care Wayanad", "old age home Kerala", "home care services Wayanad", "elderly care facility", "retirement home Kerala", "Grace Garden"],
-  authors: [{ name: "Grace Garden" }],
-  creator: "Grace Garden",
-  publisher: "Grace Garden",
+  title: "Lourdes Matha Ayurvedic Hospital - Authentic Ayurvedic Treatment in Wayanad, Kerala",
+  description: "Lourdes Matha Ayurvedic Hospital offers authentic Panchakarma therapies, traditional Ayurvedic treatments, and holistic wellness programs in Wayanad, Kerala. Expert doctors, personalized care, and natural healing in a serene environment.",
+  keywords: ["Ayurvedic hospital Wayanad", "Panchakarma treatment Kerala", "Ayurvedic therapy Wayanad", "traditional Ayurveda Kerala", "Ayurvedic wellness center", "holistic healing Wayanad", "Ayurvedic doctors Kerala", "Lourdes Matha Ayurveda"],
+  authors: [{ name: "Lourdes Matha Ayurvedic Hospital" }],
+  creator: "Lourdes Matha Ayurvedic Hospital",
+  publisher: "Lourdes Matha Ayurvedic Hospital",
   robots: {
     index: true,
     follow: true,
@@ -38,14 +38,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
-      { url: '/site-icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icon.jpg' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icon.jpg' },
     ],
     other: [
       {
@@ -56,24 +52,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://gracegarden.co.in',
-    title: 'Grace Garden - Professional Elder Care & Assisted Living',
-    description: 'Compassionate assisted living and home care services for seniors in Wayanad, Kerala.',
-    siteName: 'Grace Garden',
+    url: 'https://lourdesmatha.com',
+    title: 'Lourdes Matha Ayurvedic Hospital - Authentic Ayurvedic Treatment',
+    description: 'Authentic Panchakarma therapies and traditional Ayurvedic treatments in Wayanad, Kerala.',
+    siteName: 'Lourdes Matha Ayurvedic Hospital',
     images: [
       {
-        url: 'https://gracegarden.co.in/images/Logo.jpg',
+        url: 'https://lourdesmatha.com/images/logo.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Grace Garden Logo',
+        alt: 'Lourdes Matha Ayurvedic Hospital Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Grace Garden - Elder Care Wayanad',
-    description: 'Compassionate assisted living and home care services for seniors in Wayanad, Kerala.',
-    images: ['https://gracegarden.co.in/images/Logo.jpg'],
+    title: 'Lourdes Matha Ayurvedic Hospital - Wayanad',
+    description: 'Authentic Panchakarma therapies and traditional Ayurvedic treatments in Wayanad, Kerala.',
+    images: ['https://lourdesmatha.com/images/logo.jpeg'],
   },
   other: {
     'google-site-verification': 'your-google-verification-code',

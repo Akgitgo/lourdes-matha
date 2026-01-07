@@ -10,7 +10,7 @@ import LightboxModal from './LightboxModal';
 import { AnimatePresence } from 'framer-motion';
 
 export default function GallerySection() {
-    const [activeTab, setActiveTab] = useState<'residents' | 'facilities'>('residents');
+    const [activeTab, setActiveTab] = useState<'facilities' | 'moments' | 'environment'>('facilities');
     const [activeFilter, setActiveFilter] = useState<'all' | 'images' | 'videos'>('all');
     const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
 
@@ -36,36 +36,33 @@ export default function GallerySection() {
     );
 
     return (
-        <section id="gallery" className="py-16 px-4 bg-white">
+        <section id="gallery" className="py-24 px-4 bg-slate-50">
             <div className="max-w-7xl mx-auto">
-                {/* Section Header - matches Services */}
                 <div className="text-center mb-16">
                     <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3">
                         OUR GALLERY
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-6">
-                        Moments of joy and comfort
+                    <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6">
+                        Moments of Healing & Care
                     </h2>
                     <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                        Discover the warmth and vibrancy of life at Grace Garden through our photo and video gallery.
+                        A glimpse into the healing environment, compassionate care, and facilities at Lourdes Matha Ayurvedic Hospital.
                     </p>
                 </div>
 
-                {/* Featured Carousel */}
                 <FeaturedCarousel items={featuredItems} />
 
-                {/* Tabs & Filters */}
-                <TabFilters
-                    activeTab={activeTab}
-                    onTabChange={setActiveTab}
-                    activeFilter={activeFilter}
-                    onFilterChange={setActiveFilter}
-                />
+                <div className="mb-12">
+                    <TabFilters
+                        activeTab={activeTab}
+                        onTabChange={setActiveTab}
+                        activeFilter={activeFilter}
+                        onFilterChange={setActiveFilter}
+                    />
+                </div>
 
-                {/* Masonry Grid */}
                 <MasonryGrid items={filteredItems} onItemClick={setSelectedItem} />
 
-                {/* Lightbox Modal */}
                 <AnimatePresence>
                     {selectedItem && (
                         <LightboxModal
@@ -75,7 +72,6 @@ export default function GallerySection() {
                     )}
                 </AnimatePresence>
 
-                {/* JSON-LD Structured Data */}
                 {jsonLdSchemas.map((schema, idx) => (
                     <script
                         key={idx}

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/api/', '/_next/static/'],
         },
-        sitemap: 'https://gracegarden.co.in/sitemap.xml',
+        sitemap: 'https://lourdesmatha.com/sitemap.xml',
     }
 }

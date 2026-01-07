@@ -1,51 +1,50 @@
 export default function StructuredData() {
     const organizationSchema = {
         "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
-        "@id": "https://gracegarden.co.in/#organization",
-        "name": "Grace Garden",
-        "alternateName": "Grace Garden Elder Care",
-        "url": "https://gracegarden.co.in",
+        "@type": "Hospital",
+        "@id": "https://lourdesmatha.com/#organization",
+        "name": "Lourdes Matha Ayurvedic Hospital",
+        "alternateName": "LMAH",
+        "url": "https://lourdesmatha.com",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://gracegarden.co.in/images/Logo.jpg",
+            "url": "https://lourdesmatha.com/images/logo.jpeg",
             "width": 1200,
             "height": 400,
-            "caption": "Grace Garden Logo"
+            "caption": "Lourdes Matha Ayurvedic Hospital Logo"
         },
         "image": [
-            "https://gracegarden.co.in/images/Logo.jpg",
-            "https://gracegarden.co.in/images/Logo.jpg"
+            "https://lourdesmatha.com/images/logo.jpeg"
         ],
-        "description": "Grace Garden offers compassionate assisted living and home care services for seniors in Wayanad, Kerala. 24/7 medical care, nutritious meals, cultural activities, and comfortable accommodation options in a serene environment.",
-        "telephone": "+91-8089000467",
-        "email": "gracegarden.care@gmail.com",
+        "description": "Lourdes Matha Ayurvedic Hospital offers authentic Panchakarma therapies, traditional Ayurvedic treatments, and holistic wellness programs in Wayanad, Kerala. Expert doctors, personalized care, and natural healing in a serene environment.",
+        "telephone": "+91-91007-73861",
+        "email": "lourdesmathaayurvedichospital@gmail.com",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Vellamunda",
-            "addressLocality": "Meenangadi",
+            "streetAddress": "Sulthan Bathery",
+            "addressLocality": "Wayanad",
             "addressRegion": "Kerala",
-            "postalCode": "673591",
+            "postalCode": "673592",
             "addressCountry": "IN"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": "11.7540",
-            "longitude": "76.0392"
+            "latitude": "11.65966184619653",
+            "longitude": "76.24989979607791"
         },
         "areaServed": {
             "@type": "GeoCircle",
             "geoMidpoint": {
                 "@type": "GeoCoordinates",
-                "latitude": "11.7540",
-                "longitude": "76.0392"
+                "latitude": "11.65966184619653",
+                "longitude": "76.24989979607791"
             },
             "geoRadius": "50000"
         },
         "priceRange": "Contact for pricing",
         "sameAs": [
-            "https://www.facebook.com/gracegarden",
-            "https://www.instagram.com/gracegarden"
+            "https://www.facebook.com/lourdesmatha",
+            "https://www.instagram.com/lourdesmatha"
         ],
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
@@ -66,18 +65,18 @@ export default function StructuredData() {
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "https://gracegarden.co.in/#website",
-        "url": "https://gracegarden.co.in",
-        "name": "Grace Garden",
-        "description": "Professional Elder Care & Assisted Living in Wayanad, Kerala",
+        "@id": "https://lourdesmatha.com/#website",
+        "url": "https://lourdesmatha.com",
+        "name": "Lourdes Matha Ayurvedic Hospital",
+        "description": "Authentic Ayurvedic Treatment & Panchakarma Therapies in Wayanad, Kerala",
         "publisher": {
-            "@id": "https://gracegarden.co.in/#organization"
+            "@id": "https://lourdesmatha.com/#organization"
         },
         "potentialAction": {
             "@type": "SearchAction",
             "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://gracegarden.co.in/?s={search_term_string}"
+                "urlTemplate": "https://lourdesmatha.com/?s={search_term_string}"
             },
             "query-input": "required name=search_term_string"
         }
@@ -85,48 +84,46 @@ export default function StructuredData() {
 
     const localBusinessSchema = {
         "@context": "https://schema.org",
-        "@type": "AssistedLivingFacility",
-        "@id": "https://gracegarden.co.in/#business",
-        "name": "Grace Garden",
+        "@type": "Hospital",
+        "@id": "https://lourdesmatha.com/#business",
+        "name": "Lourdes Matha Ayurvedic Hospital",
         "image": [
-            "https://gracegarden.co.in/images/Logo.jpg",
-            "https://gracegarden.co.in/images/facility-1.jpg",
-            "https://gracegarden.co.in/images/residents-1.jpeg"
+            "https://lourdesmatha.com/images/logo.jpeg"
         ],
-        "logo": "https://gracegarden.co.in/images/Logo.jpg",
-        "url": "https://gracegarden.co.in",
-        "telephone": "+91-8089000467",
-        "email": "gracegarden.care@gmail.com",
+        "logo": "https://lourdesmatha.com/images/logo.jpeg",
+        "url": "https://lourdesmatha.com",
+        "telephone": "+91-91007-73861",
+        "email": "lourdesmathaayurvedichospital@gmail.com",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Vellamunda",
-            "addressLocality": "Meenangadi",
+            "streetAddress": "Sulthan Bathery",
+            "addressLocality": "Wayanad",
             "addressRegion": "Kerala",
-            "postalCode": "673591",
+            "postalCode": "673592",
             "addressCountry": "IN"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": "11.7540",
-            "longitude": "76.0392"
+            "latitude": "11.65966184619653",
+            "longitude": "76.24989979607791"
         },
         "priceRange": "Contact for pricing",
         "amenityFeature": [
             {
                 "@type": "LocationFeatureSpecification",
-                "name": "24/7 Medical Care"
+                "name": "Panchakarma Therapy"
             },
             {
                 "@type": "LocationFeatureSpecification",
-                "name": "Nutritious Meals"
+                "name": "Traditional Ayurvedic Treatment"
             },
             {
                 "@type": "LocationFeatureSpecification",
-                "name": "Cultural Activities"
+                "name": "Expert Ayurvedic Doctors"
             },
             {
                 "@type": "LocationFeatureSpecification",
-                "name": "Emergency Response"
+                "name": "Holistic Wellness Programs"
             }
         ]
     };

@@ -1,94 +1,95 @@
 "use client";
 
 import Image from 'next/image';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { aboutUsData } from '@/lib/aboutUs';
 
 export default function About() {
-  const team = [
-    {
-      name: "Vinu Baby",
-      role: "Founder",
-      initials: "VB",
-      image: "/images/vinubaby.jpg",
-      objectPosition: "center 30%",
-      description: "Vinu brings 15+ years of corporate experience to Grace Garden. His mission is simple: to serve the elderly with genuine compassion, kindness, and unwavering dignity.",
-      quote: "After you, we are the best people to care for your loved ones, treating them with the same love and dignity as our own family."
-    },
-    {
-      name: "Shilby Benny",
-      role: "Managing Director",
-      initials: "SB",
-      image: "/images/shilbybenny.jpg",
-      objectPosition: "center 15%",
-      description: "As Operations Incharge, Shilby manages daily care with warmth and precision. She ensures every resident feels safe, valued, and truly at home.",
-      quote: "Creating a home where every resident feels the warmth of family and the comfort of care."
-    },
-    {
-      name: "Preethy Abinand",
-      role: "Co-Founder",
-      initials: "PA",
-      image: "/images/preethyabinand.jpg",
-      objectPosition: "center 25%",
-      description: "Preethy oversees Finance and Facilities, creating a secure and welcoming environment. Her teaching background infuses patience and clarity into everything she does.",
-      quote: "Building a foundation of trust and safety, ensuring peace of mind for every family we serve."
-    }
-  ];
-
   return (
-    <section id="about" className="py-16 px-4 bg-slate-50">
+    <section
+      id="about"
+      className="bg-[#f5f5f0] py-16 px-6 sm:px-12 md:py-24 md:px-20 w-full overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3">
-            ABOUT US
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-slate-900 mb-6">
-            Meet our dedicated team
+        {/* Intro Section */}
+        <div className="text-center mb-16 md:mb-24">
+          <h3 className="font-['Inter'] text-sm sm:text-base font-medium text-[#B8860B] mb-4 tracking-[2px] uppercase">
+            {aboutUsData.subheading}
+          </h3>
+          <h2 className="font-['Playfair_Display'] text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-6 leading-tight">
+            {aboutUsData.heading}
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Our team is driven by compassion, professionalism, and a shared commitment to enriching the lives of our residents.
+          <p className="font-['Inter'] text-base sm:text-lg font-normal text-[#4a4a4a] leading-relaxed max-w-3xl mx-auto">
+            {aboutUsData.introDescription}
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {team.map((member, index) => (
+        {/* Doctors and Board Sections */}
+        <div className="flex flex-col gap-16 md:gap-24">
+          {/* Doctor Profiles */}
+          {aboutUsData.doctors.map((doctor, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center p-7 bg-white rounded-2xl shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/30 transition-all duration-300"
+              className="grid grid-cols-1 lg:grid-cols-[minmax(300px,420px)_1fr] gap-10 lg:gap-16 items-center bg-white p-6 sm:p-10 rounded-[2rem] shadow-xl border border-[#B8860B]/5"
             >
-              {/* Profile Image */}
-              <div className="w-36 h-36 rounded-full overflow-hidden mb-5 shadow-md border-4 border-white relative">
+              <div className="relative w-full aspect-square max-w-[420px] mx-auto lg:mx-0 rounded-full overflow-hidden border-8 border-white shadow-2xl bg-gray-100 z-10 flex-shrink-0">
                 <Image
-                  src={member.image}
-                  alt={member.name}
+                  src={doctor.image}
+                  alt={doctor.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 420px"
                   className="object-cover"
-                  style={{ objectPosition: member.objectPosition }}
+                  style={{
+                    objectPosition: (doctor as any).objectPosition || 'center'
+                  }}
+                  priority={index === 0}
                 />
               </div>
 
-              {/* Name & Role */}
-              <h3 className="text-xl font-sans font-bold text-slate-900 mb-1">
-                {member.name}
-              </h3>
-              <p className="text-sm uppercase tracking-wider text-slate-500 font-medium mb-5">
-                {member.role}
-              </p>
-
-              {/* Description */}
-              <p className="text-slate-600 leading-relaxed mb-5 text-sm flex-grow">
-                {member.description}
-              </p>
-
-              {/* Quote (if available) */}
-              {member.quote && (
-                <p className="text-primary italic font-serif text-base mb-5 px-3">
-                  "{member.quote}"
+              <div className="flex flex-col justify-center">
+                <h3 className="font-['Playfair_Display'] text-2xl sm:text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-2 leading-tight">
+                  {doctor.name}
+                </h3>
+                <p className="font-['Inter'] text-base sm:text-lg font-semibold text-[#B8860B] mb-1 tracking-wide">
+                  {doctor.degrees}
                 </p>
-              )}
+                <p className="font-['Inter'] text-sm sm:text-base font-medium text-gray-500 mb-6 uppercase tracking-widest">
+                  {doctor.role}
+                </p>
+                <div className="font-['Inter'] text-sm sm:text-base font-normal text-[#555555] leading-relaxed border-l-4 border-[#B8860B] pl-6 py-4 bg-[#fafafa] rounded-r-2xl">
+                  {doctor.description.map((para, pIdx) => (
+                    <p key={pIdx} className={pIdx < doctor.description.length - 1 ? "mb-4" : ""}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
+
+          {/* Management Card */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(300px,420px)] gap-10 lg:gap-16 items-center bg-[#2d5a4f] p-6 sm:p-10 rounded-[2rem] shadow-2xl text-white">
+            <div className="flex flex-col justify-center order-2 lg:order-1">
+              <h3 className="font-['Playfair_Display'] text-2xl sm:text-3xl md:text-4xl font-bold text-[#B8860B] mb-6 leading-tight">
+                {aboutUsData.management.heading}
+              </h3>
+              <div className="font-['Inter'] text-sm sm:text-base font-normal text-white/90 leading-loose space-y-4">
+                {aboutUsData.management.paragraphs.map((para, pIdx) => (
+                  <p key={pIdx}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative w-full h-[300px] sm:h-[400px] rounded-2xl overflow-hidden border-4 border-white/10 shadow-2xl order-1 lg:order-2">
+              <Image
+                src={aboutUsData.management.image}
+                alt="Hospital Management"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

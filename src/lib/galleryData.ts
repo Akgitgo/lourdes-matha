@@ -1,7 +1,7 @@
 export interface MediaItem {
     id: string;
     type: 'image' | 'video';
-    category: 'residents' | 'facilities' | 'testimonials';
+    category: 'facilities' | 'moments' | 'environment';
     src: string;
     poster?: string;
     alt: string;
@@ -10,195 +10,243 @@ export interface MediaItem {
     width: number;
     height: number;
     featured?: boolean;
-    consentSigned?: boolean;
     duration?: string;
     date?: string;
-    objectPosition?: string;
 }
 
 export const galleryItems: MediaItem[] = [
-    // Residents - Featured
+    // Videos (Environment/Farm)
     {
-        id: 'res-1',
-        type: 'image',
-        category: 'residents',
-        src: '/images/residents-1.jpeg',
-        alt: 'Happy residents enjoying morning yoga session',
-        title: 'Opening Ceremony',
-        caption: 'Celebrating the grand opening of Grace Garden with community members and well-wishers',
-        width: 1200,
-        height: 800,
-        featured: true,
-        consentSigned: true,
-        date: '2024-12-01'
-    },
-    {
-        id: 'res-4',
+        id: 'vid-1',
         type: 'video',
-        category: 'residents',
-        src: '/videos/residents-activity.mp4',
-        poster: '/images/residents-4-poster.jpg',
-        alt: 'Group activity session',
-        title: 'Activity Time',
+        category: 'environment',
+        src: '/videos/video1atfarm.mp4',
+        poster: '/images/hospital.jpeg',
+        alt: 'Beautiful farm environment at Lourdes Matha',
+        title: 'Our Natural Surroundings',
+        caption: 'A peaceful environment that complements the healing process.',
         width: 1920,
         height: 1080,
-        duration: '2:15',
-        consentSigned: true
-    },
-    {
-        id: 'res-2',
-        type: 'image',
-        category: 'residents',
-        src: '/images/residents-2.jpeg',
-        alt: 'Residents celebrating festival together',
-        title: 'Festival Celebration',
-        caption: 'Community gatherings create lasting memories',
-        width: 1200,
-        height: 900,
+        duration: '0:45',
         featured: true,
-        consentSigned: true,
-        date: '2024-11-28'
+        date: '2024-12-15'
     },
     {
-        id: 'res-3',
-        type: 'image',
-        category: 'residents',
-        src: '/images/residents-3.jpeg',
-        alt: 'Residents enjoying Blessing Event',
-        title: 'Blessing Event',
-        width: 800,
-        height: 600,
-        consentSigned: true
-    },
-    {
-        id: 'res-7',
+        id: 'vid-2',
         type: 'video',
-        category: 'residents',
-        src: '/videos/happyresidents.mp4',
-        poster: '/images/residents-1.jpeg',
-        alt: 'Happy residents daily life moments',
-        title: 'Happy Residents',
+        category: 'environment',
+        src: '/videos/video2atfarm.mp4',
+        poster: '/images/entrance.jpeg',
+        alt: 'Lush greenery at the hospital premises',
+        title: 'Healing with Nature',
+        caption: 'Experiencing serenity amidst nature.',
         width: 1920,
         height: 1080,
-        duration: '2:30',
-        consentSigned: true
+        duration: '1:02',
+        date: '2024-12-15'
     },
-    {
-        id: 'res-5',
-        type: 'image',
-        category: 'residents',
-        src: '/images/Exterior-View.jpg',
-        alt: 'Exterior View of GG',
-        title: 'Exterior View',
-        width: 900,
-        height: 600,
-        consentSigned: true
-    },
-    // Facilities - Featured
+    // Facilities (Images)
     {
         id: 'fac-1',
         type: 'image',
         category: 'facilities',
-        src: '/images/facility-1.jpg',
-        alt: 'Spacious dining hall with natural lighting',
-        title: 'Private Dining',
-        caption: 'Nutritious meals in a welcoming space',
+        src: '/images/hospital.jpeg',
+        alt: 'Lourdes Matha Ayurvedic Hospital Building',
+        title: 'Our Hospital',
+        caption: 'The main building providing a sanctuary for healing.',
         width: 1200,
         height: 800,
         featured: true,
-        consentSigned: true,
-        date: '2024-12-02'
+        date: '2024-12-15'
     },
     {
-        id: 'fac-4',
-        type: 'video',
-        category: 'facilities',
-        src: '/videos/facility-tour.mp4',
-        poster: '/images/facility-4-poster.jpg',
-        alt: 'Facility tour video',
-        title: 'Room Tour',
-        width: 1920,
-        height: 1080,
-        duration: '3:45',
-        consentSigned: true
-    },
-    {
-        id: 'fac-elegant',
+        id: 'fac-2',
         type: 'image',
         category: 'facilities',
-        src: '/images/elegantroom.JPG',
-        alt: 'Elegant room with modern furnishings',
-        title: 'Elegant Room',
+        src: '/images/exterior.jpeg',
+        alt: 'Hospital Exterior View',
+        title: 'Exterior View',
         width: 1200,
         height: 800,
-        consentSigned: true
-    },
-    {
-        id: 'fac-elite',
-        type: 'image',
-        category: 'facilities',
-        src: '/images/eliteroom.jpeg',
-        alt: 'Elite room with premium amenities',
-        title: 'Elite Room',
-        width: 1200,
-        height: 800,
-        consentSigned: true
-    },
-    {
-        id: 'fac-7',
-        type: 'video',
-        category: 'facilities',
-        src: '/videos/facilitiesandroom.mp4',
-        poster: '/images/facility-1.jpg',
-        alt: 'Facilities and room tour',
-        title: 'Facilities Tour',
-        width: 1920,
-        height: 1080,
-        duration: '3:00',
-        consentSigned: true
-    },
-    {
-        id: 'fac-luxury',
-        type: 'image',
-        category: 'facilities',
-        src: '/images/luxuryroom.JPG',
-        alt: 'Luxury room with high-end features',
-        title: 'Luxury Room',
-        width: 1200,
-        height: 800,
-        consentSigned: true
-    },
-    {
-        id: 'fac-recreation',
-        type: 'image',
-        category: 'facilities',
-        src: '/images/entertainmenthall (2).JPG',
-        alt: 'Recreation area for activities and entertainment',
-        title: 'Entertainment Hall',
-        width: 1200,
-        height: 800,
-        consentSigned: true
+        date: '2024-12-15'
     },
     {
         id: 'fac-3',
         type: 'image',
         category: 'facilities',
-        src: '/images/washroom.JPG',
-        alt: 'Clean and accessible attached washroom',
-        title: 'Attached Washroom',
+        src: '/images/entrance.jpeg',
+        alt: 'Hospital Entrance',
+        title: 'Entrance',
         width: 1200,
-        height: 700,
-        consentSigned: true
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'fac-4',
+        type: 'image',
+        category: 'facilities',
+        src: '/images/reception2.jpeg',
+        alt: 'Hospital Reception Area',
+        title: 'Warm Welcome',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'fac-5',
+        type: 'image',
+        category: 'facilities',
+        src: '/images/internalroom1.jpeg',
+        alt: 'Comfortable Patient Room',
+        title: 'Patient Accommodations',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
     },
     {
         id: 'fac-6',
         type: 'image',
         category: 'facilities',
-        src: '/images/Emergency-Room.jpg',
-        alt: 'Medical care room',
-        title: 'Medical Care',
-        width: 900,
-        height: 700,
-        consentSigned: true
+        src: '/images/beds.jpeg',
+        alt: 'Treatment Rooms and Beds',
+        title: 'Treatment Facilities',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'fac-7',
+        type: 'image',
+        category: 'facilities',
+        src: '/images/treehouse.jpeg',
+        alt: 'Tree House at Hospital',
+        title: 'Unique Spaces',
+        width: 1200,
+        height: 1600,
+        date: '2024-12-15'
+    },
+    // Moments of Joy (Images)
+    {
+        id: 'mom-1',
+        type: 'image',
+        category: 'moments',
+        src: '/images/festivalcelebration.jpeg',
+        alt: 'Festival Celebrations at Hospital',
+        title: 'Community & Culture',
+        caption: 'Celebrating traditions together.',
+        width: 1200,
+        height: 800,
+        featured: true,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-2',
+        type: 'image',
+        category: 'moments',
+        src: '/images/christmascelebration2.jpeg',
+        alt: 'Christmas Celebrations',
+        title: 'Joyful Moments',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-3',
+        type: 'image',
+        category: 'moments',
+        src: '/images/openingceremony.jpeg',
+        alt: 'Opening Ceremony',
+        title: 'Our Journey Beginning',
+        width: 1200,
+        height: 800,
+        date: '2024-12-01'
+    },
+    {
+        id: 'mom-4',
+        type: 'image',
+        category: 'moments',
+        src: '/images/candid1.jpeg',
+        alt: 'Candid Moments',
+        title: 'Shared Smiles',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-5',
+        type: 'image',
+        category: 'moments',
+        src: '/images/candid2.jpeg',
+        alt: 'Healing with Compassion',
+        title: 'Care & Compassion',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-6',
+        type: 'image',
+        category: 'moments',
+        src: '/images/celebration.jpeg',
+        alt: 'Hospital Celebrations',
+        title: 'Festive Spirit',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-7',
+        type: 'image',
+        category: 'moments',
+        src: '/images/christmsacelebration1.jpeg',
+        alt: 'Christmas Gathering',
+        title: 'Holiday Cheer',
+        width: 1200,
+        height: 800,
+        date: '2024-12-25'
+    },
+    {
+        id: 'mom-8',
+        type: 'image',
+        category: 'moments',
+        src: '/images/festival3.jpeg',
+        alt: 'Cultural Festival',
+        title: 'Cultural Heritage',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-9',
+        type: 'image',
+        category: 'moments',
+        src: '/images/opening2.jpeg',
+        alt: 'Inauguration Moments',
+        title: 'New Beginnings',
+        width: 1200,
+        height: 800,
+        date: '2024-12-01'
+    },
+    {
+        id: 'mom-10',
+        type: 'image',
+        category: 'moments',
+        src: '/images/speech.jpeg',
+        alt: 'Inspirational Talk',
+        title: 'Sharing Knowledge',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
+    },
+    {
+        id: 'mom-11',
+        type: 'image',
+        category: 'moments',
+        src: '/images/onamcelebration.jpeg',
+        alt: 'Onam Celebrations',
+        title: 'Onam Celebration',
+        width: 1200,
+        height: 800,
+        date: '2024-12-15'
     }
 ];
