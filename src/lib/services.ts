@@ -179,7 +179,7 @@ export const servicesData = {
         },
         {
           title: "Respiratory Problems and Allergies",
-          description: "Effective treatments for Bronchial Asthma, Allergic rhinitis, Cough and sore throat. Boosts immunity against recurrent chest infection.",
+          description: "Effective Ayurvedic care for Asthma, Allergic rhinitis, and recurrent respiratory infections.",
           image: "/images/respiratoryproblems.jpeg"
         },
         {
