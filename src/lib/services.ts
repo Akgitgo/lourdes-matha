@@ -178,7 +178,7 @@ export const servicesData = {
           image: "/images/skindiseases.jpeg"
         },
         {
-          title: "Respiratory Problems and Allergies",
+          title: "Respiratory Problems",
           description: "Effective Ayurvedic care for Asthma, Allergic rhinitis, and recurrent respiratory infections.",
           image: "/images/respiratoryproblems.jpeg"
         },
