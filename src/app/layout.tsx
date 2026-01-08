@@ -38,10 +38,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon.jpg' },
+      { url: '/images/logo.jpeg' },
     ],
     apple: [
-      { url: '/icon.jpg' },
+      { url: '/images/logo.jpeg' },
     ],
     other: [
       {
