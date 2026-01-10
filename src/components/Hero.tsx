@@ -57,14 +57,6 @@ export default function Hero() {
                 >
                   BROCHURE BOOKLET
                 </a>
-
-                <a
-                  href="/New Brochure LMAH.docx"
-                  download
-                  className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-[#2d5a4f] border-2 border-[#2d5a4f] font-['Inter'] text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-[#2d5a4f] hover:text-white hover:-translate-y-0.5 active:translate-y-0 h-12"
-                >
-                  NEW BROCHURE
-                </a>
               </div>
             </div>
           </div>
