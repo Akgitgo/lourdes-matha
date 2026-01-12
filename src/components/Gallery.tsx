@@ -43,36 +43,35 @@ export default function Gallery() {
               </div>
 
               {/* Mobile/Tablet Carousel */}
-              <div className="lg:hidden -mx-6 sm:-mx-12 overflow-hidden">
-                <motion.div
-                  drag="x"
-                  dragConstraints={{ right: 0, left: -((section.images.length - 1) * 280) }} // Estimated width for fallback
-                  whileTap={{ cursor: 'grabbing' }}
-                  className="flex gap-4 px-6 sm:px-12"
-                >
-                  {section.images.map((imagePath, imageIndex) => (
-                    <motion.div
-                      key={imageIndex}
-                      className="relative min-w-[80vw] sm:min-w-[45vw] aspect-[4/3] rounded-2xl overflow-hidden shadow-md"
-                      onClick={() => setSelectedImage(imagePath)}
-                    >
-                      <Image
-                        src={imagePath}
-                        alt={`${section.title} - Image ${imageIndex + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw"
-                      />
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
-                          <Maximize2 size={20} />
-                        </div>
+              <div className="lg:hidden -mx-6 sm:-mx-12 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-4 px-6 sm:px-12 pb-4">
+                {section.images.map((imagePath, imageIndex) => (
+                  <motion.div
+                    key={imageIndex}
+                    className="relative min-w-[85vw] sm:min-w-[45vw] aspect-[4/3] rounded-2xl overflow-hidden shadow-md snap-center"
+                    onClick={() => setSelectedImage(imagePath)}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Image
+                      src={imagePath}
+                      alt={`${section.title} - Image ${imageIndex + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw"
+                    />
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
+                        <Maximize2 size={20} />
                       </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-                <div className="flex justify-center gap-2 mt-6">
-                  <div className="text-xs text-gray-400 italic font-['Inter']">Swipe to view more</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="lg:hidden flex justify-center gap-2 mt-2 mb-8">
+                <div className="text-xs text-gray-400 italic font-['Inter'] flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                  Scroll horizontally to view more
                 </div>
               </div>
 

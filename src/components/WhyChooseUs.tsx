@@ -77,14 +77,43 @@ export default function WhyChooseUs() {
                 {/* Media Section - 70% Height */}
                 <div className="relative w-full h-[70%] overflow-hidden bg-black">
                   {(pillar as any).video ? (
-                    <video
-                      src={(pillar as any).video}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
+                    <div
+                      className="relative w-full h-full cursor-pointer"
+                      onClick={(e) => {
+                        const video = e.currentTarget.querySelector('video');
+                        const iconContainer = e.currentTarget.querySelector('.play-icon-container');
+                        if (video && iconContainer) {
+                          if (video.paused) {
+                            video.play();
+                            iconContainer.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                          } else {
+                            video.pause();
+                            iconContainer.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                          }
+                        }
+                      }}
+                    >
+                      <video
+                        id={`video-${index}`}
+                        src={(pillar as any).video.split('/').map((p: string) => encodeURIComponent(p)).join('/').replace(/%2F/g, '/')}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                      {/* Play/Pause Button Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="play-icon-container w-12 h-12 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white border border-white/30 transition-transform duration-300 group-hover:scale-110">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="absolute top-4 left-4 px-2 py-1 bg-black/50 backdrop-blur-md rounded text-[10px] text-white font-bold uppercase tracking-widest border border-white/10">
+                        Video
+                      </div>
+                    </div>
                   ) : (
                     <Image
                       src={pillar.image || '/images/hospital.jpeg'}

@@ -43,7 +43,7 @@ export default function Hero() {
               <a
                 href="#packages"
                 onClick={(e) => scrollToSection(e, 'packages')}
-                className="inline-flex items-center justify-center px-8 py-3 bg-[#2d5a4f] text-white font-['Inter'] text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-[#245048] hover:-translate-y-0.5 active:translate-y-0 h-12 shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center px-8 py-3 bg-[#B8860B] text-white font-['Inter'] text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-[#9A6E09] hover:-translate-y-0.5 active:translate-y-0 h-12 shadow-md hover:shadow-lg"
               >
                 {heroData.cta}
               </a>
@@ -53,7 +53,7 @@ export default function Hero() {
                   href="/booklet.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-[#2d5a4f] border-2 border-[#2d5a4f] font-['Inter'] text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-[#2d5a4f] hover:text-white hover:-translate-y-0.5 active:translate-y-0 h-12"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-[#B8860B] border-2 border-[#B8860B] font-['Inter'] text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-[#B8860B] hover:text-white hover:-translate-y-0.5 active:translate-y-0 h-12"
                 >
                   BROCHURE BOOKLET
                 </a>
