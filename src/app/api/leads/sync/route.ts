@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { readLeads, writeLeads } from '@/lib/leadsStore';
+import { markLeadsAsSynced } from '@/lib/leadsStore';
 const API_KEY = process.env.TRESCON_API_KEY;
 
 export async function POST(request: Request) {
@@ -25,18 +25,11 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
         }
 
-        const leads = readLeads();
-        const updatedLeads = leads.map((lead) => {
-            if (ids.includes(lead.id)) {
-                return { ...lead, synced: true };
-            }
-            return lead;
-        });
-
-        writeLeads(updatedLeads);
+        await markLeadsAsSynced(ids);
 
         return NextResponse.json({ success: true });
     } catch (error) {
+        console.error('API SYNC Error:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }

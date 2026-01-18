@@ -76,7 +76,7 @@ export default function TherapyCarousel({ items, getIcon }: TherapyCarouselProps
 
 function Card({ item, icon }: { item: any; icon: React.ReactNode }) {
     return (
-        <div className="bg-[#FAF3E0] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-[#B8860B]/10 shadow-lg hover:shadow-2xl transition-all duration-700 flex flex-col h-[580px] sm:h-[540px] w-full group/card relative">
+        <div className="bg-[#FAF3E0] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-[#B8860B]/10 shadow-lg hover:shadow-2xl transition-all duration-700 flex flex-col h-[580px] sm:h-[620px] lg:h-[720px] w-full group/card relative">
             {/* Image Section - 70% height */}
             <div className="relative w-full h-[70%] overflow-hidden">
                 <Image
@@ -84,7 +84,7 @@ function Card({ item, icon }: { item: any; icon: React.ReactNode }) {
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                    style={{ objectPosition: item.objectPosition || 'center' }}
+                    style={{ objectPosition: item.objectPosition || 'center center' }}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority
                 />
@@ -100,17 +100,17 @@ function Card({ item, icon }: { item: any; icon: React.ReactNode }) {
             </div>
 
             {/* Text Section - 30% height */}
-            <div className="px-5 sm:px-6 pb-4 sm:pb-6 pt-10 sm:pt-12 text-center h-[30%] flex flex-col justify-start items-center bg-[#FAF3E0]">
-                <h4 className="font-['Playfair_Display'] text-xl sm:text-lg lg:text-[22px] font-bold text-[#1a1a1a] mb-2 tracking-tight leading-tight group-hover/card:text-[#2d5a4f] transition-colors duration-300">
+            <div className="px-5 sm:px-6 pb-4 sm:pb-8 pt-10 sm:pt-14 text-center h-[30%] flex flex-col justify-start items-center bg-[#FAF3E0]">
+                <h4 className="font-['Playfair_Display'] text-xl sm:text-lg lg:text-[22px] font-bold text-[#1a1a1a] mb-3 lg:mb-4 tracking-tight leading-tight group-hover/card:text-[#2d5a4f] transition-colors duration-300">
                     {item.title}
                 </h4>
                 <div className="flex-1 overflow-hidden w-full">
-                    <p className="font-['Inter'] text-sm sm:text-base text-[#4a4a4a] leading-relaxed line-clamp-4 overflow-hidden font-medium opacity-90 px-2">
+                    <p className="font-['Inter'] text-sm sm:text-base text-[#4a4a4a] leading-relaxed line-clamp-4 lg:line-clamp-5 overflow-hidden font-medium opacity-90 px-2 lg:px-4">
                         {item.description}
                     </p>
                 </div>
                 {/* Visual anchor */}
-                <div className="hidden sm:block w-6 h-0.5 bg-[#B8860B]/30 mx-auto mt-2 rounded-full transform scale-x-0 group-hover/card:scale-x-100 transition-transform duration-500" />
+                <div className="hidden sm:block w-6 h-0.5 bg-[#B8860B]/30 mx-auto mt-4 rounded-full transform scale-x-0 group-hover/card:scale-x-100 transition-transform duration-500" />
             </div>
         </div>
     );

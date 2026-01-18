@@ -184,26 +184,30 @@ export default function WhyChooseUs() {
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t border-[#2d5a4f]/10">
-                  <h5 className="font-bold text-[#2d5a4f] uppercase tracking-wider text-xs">The 4 Pillars of Ayurveda</h5>
-                  <ul className="space-y-2 text-xs sm:text-sm">
-                    <li className="flex gap-2">
-                      <span className="font-bold text-[#B8860B]">1. Ahara (Diet):</span> Considered a form of medicine.
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="font-bold text-[#B8860B]">2. Vihara (Lifestyle):</span> Balanced daily routine.
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="font-bold text-[#B8860B]">3. Achara:</span> Mental & emotional wellness through meditation.
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="font-bold text-[#B8860B]">4. Chikitsa:</span> Traditional internal medicines & Panchakarma.
-                    </li>
-                  </ul>
+                <div className="space-y-4 pt-6 border-t border-[#2d5a4f]/20">
+                  <h5 className="font-bold text-[#2d5a4f] uppercase tracking-wider text-[10px] sm:text-xs text-center mb-4">The 4 Pillars of Ayurveda</h5>
+                  <div className="space-y-3 text-xs sm:text-sm max-w-[280px] sm:max-w-none mx-auto">
+                    <div className="grid grid-cols-[115px_1fr] sm:grid-cols-[130px_1fr] gap-3 items-baseline">
+                      <span className="font-bold text-[#B8860B] whitespace-nowrap">1. Ahara (Diet):</span>
+                      <span className="text-gray-700 leading-relaxed text-left">Considered a form of medicine.</span>
+                    </div>
+                    <div className="grid grid-cols-[115px_1fr] sm:grid-cols-[130px_1fr] gap-3 items-baseline">
+                      <span className="font-bold text-[#B8860B] whitespace-nowrap">2. Vihara (Lifestyle):</span>
+                      <span className="text-gray-700 leading-relaxed text-left">Balanced daily routine.</span>
+                    </div>
+                    <div className="grid grid-cols-[115px_1fr] sm:grid-cols-[130px_1fr] gap-3 items-baseline">
+                      <span className="font-bold text-[#B8860B] whitespace-nowrap">3. Achara:</span>
+                      <span className="text-gray-700 leading-relaxed text-left">Mental & emotional wellness through meditation.</span>
+                    </div>
+                    <div className="grid grid-cols-[115px_1fr] sm:grid-cols-[130px_1fr] gap-3 items-baseline">
+                      <span className="font-bold text-[#B8860B] whitespace-nowrap">4. Chikitsa:</span>
+                      <span className="text-gray-700 leading-relaxed text-left">Traditional internal medicines & Panchakarma.</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#2d5a4f]/10">
-                  <p className="text-xs sm:text-sm leading-relaxed">
+                <div className="pt-6 border-t border-[#2d5a4f]/20 text-center">
+                  <p className="text-xs sm:text-sm leading-relaxed text-gray-800">
                     We are committed to delivering world-class medical services through our experienced panel of doctors and therapists, focusing on holistic healing that aligns the body, mind, and spirit.
                   </p>
                 </div>

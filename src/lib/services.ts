@@ -186,7 +186,7 @@ export const servicesData = {
           title: "Digestive Disorders",
           description: "Treatment for Mouth Ulcer, Irritable bowel syndrome, and Constipation.",
           image: "/images/digestuvedisorder.jpeg"
-        },
+        },   
         {
           title: "Women's Health Issues",
           description: "Supportive Care for menstrual irregularities, hormonal imbalances, postnatal care, and menopausal symptoms.",

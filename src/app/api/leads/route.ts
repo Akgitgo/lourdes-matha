@@ -1,25 +1,9 @@
 import { NextResponse } from 'next/server';
-import { readLeads, writeLeads, Lead } from '@/lib/leadsStore';
-// removed unused validateApiKey import to avoid commented/unused auth bypass
-import { v4 as uuidv4 } from 'uuid';
+import { addLead, getUnsyncedLeads } from '@/lib/leadsStore';
 
 const API_KEY = process.env.TRESCON_API_KEY;
 
 export async function POST(req: Request) {
-    if (!API_KEY) {
-        return NextResponse.json({ error: 'Server misconfiguration: Missing API Key' }, { status: 500 });
-    }
-    // Require Authorization header with exact API key match
-    const authorization = req.headers.get("authorization");
-    if (!authorization) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const parts = authorization.split(' ');
-    const token = parts.length > 1 ? parts[1] : parts[0];
-    if (token !== API_KEY) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
     try {
         const body = await req.json();
         const { name, phone, email, service, appointmentType, preferredDate, message } = body;
@@ -28,8 +12,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        const newLead: Lead = {
-            id: uuidv4(),
+        const id = await addLead({
             name,
             phone,
             email,
@@ -37,16 +20,11 @@ export async function POST(req: Request) {
             appointmentType: appointmentType || '',
             preferredDate: preferredDate || '',
             message: message || '',
-            createdAt: new Date().toISOString(),
-            synced: false,
-        };
+        });
 
-        const leads = readLeads();
-        leads.push(newLead);
-        writeLeads(leads);
-
-        return NextResponse.json({ success: true, id: newLead.id });
+        return NextResponse.json({ success: true, id });
     } catch (error) {
+        console.error('API POST Error:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }
@@ -67,10 +45,11 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // debug logging removed to avoid exposing API key
-
-    const leads = readLeads();
-    const unsyncedLeads = leads.filter((l) => !l.synced);
-
-    return NextResponse.json(unsyncedLeads);
+    try {
+        const unsyncedLeads = await getUnsyncedLeads();
+        return NextResponse.json(unsyncedLeads);
+    } catch (error) {
+        console.error('API GET Error:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
 }
