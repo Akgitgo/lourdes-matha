@@ -1,0 +1,15 @@
+{
+    "name": "Lourdes Matha Ayurvedic Hospital",
+    "short_name": "LMAH",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2d5a4f",
+    "icons": [
+        {
+            "src": "/images/logo.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}
