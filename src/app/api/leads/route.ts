@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 
-const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-
 export async function POST(req: Request) {
+    // Read the environment variable inside the handler to ensure it's fresh
+    const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+
     try {
         const body = await req.json();
         const { name, phone, email, service, appointmentType, preferredDate, message } = body;
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
 
         if (!GOOGLE_SHEETS_WEBHOOK_URL) {
             console.error('GOOGLE_SHEETS_WEBHOOK_URL is not defined in environment variables');
-            return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+            return NextResponse.json({ error: 'Server configuration error: Missing Google Sheets URL' }, { status: 500 });
         }
 
         const googleResponse = await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
@@ -33,25 +34,30 @@ export async function POST(req: Request) {
             }),
         });
 
-        // Google Apps Script returns a redirect (302) often, which fetch follows automatically.
-        // If it follows and gets a 200 OK from the final page (often an HTML page saying "script completed"),
-        // we can consider it a success. The script I provided returns JSON.
-
         if (googleResponse.ok) {
-            const result = await googleResponse.json().catch(() => ({}));
+            let result;
+            try {
+                // Clone response because we might need to read text if json fails
+                result = await googleResponse.clone().json();
+            } catch (e) {
+                const text = await googleResponse.text();
+                console.error('Failed to parse Google Sheets response as JSON. Received:', text);
+                return NextResponse.json({ error: 'Invalid response from Google Sheets integration' }, { status: 502 });
+            }
+
             if (result.result === 'success') {
                 return NextResponse.json({ success: true });
             } else {
-                console.error('Google Sheets Script Error:', result);
-                return NextResponse.json({ error: 'Failed to save to Google Sheets' }, { status: 500 });
+                console.error('Google Sheets Script returned error:', result);
+                return NextResponse.json({ error: 'Failed to save to Google Sheets', details: result }, { status: 500 });
             }
         } else {
             console.error('Google Sheets HTTP Error:', googleResponse.status, await googleResponse.text());
-            return NextResponse.json({ error: 'Failed to connect to Google Sheets' }, { status: 500 });
+            return NextResponse.json({ error: 'Failed to connect to Google Sheets integration' }, { status: 502 });
         }
 
     } catch (error) {
         console.error('API POST Error:', error);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+        return NextResponse.json({ error: 'Internal server error processing request' }, { status: 500 });
     }
 }
